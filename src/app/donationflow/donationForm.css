@@ -1,0 +1,9 @@
+.device-information-section {
+    border: 1px solid red;
+    display: grid;
+    grid-template: 
+                "a b b b b b" 1fr 5fr
+                "a b b b b b"
+                "a b b b b b"
+                "a b b b b b";
+}

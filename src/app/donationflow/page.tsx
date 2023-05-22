@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Nav from '../nav/Nav.tsx';
+import './donationForm.css'
 
 export default function Page() {
 
@@ -46,7 +47,7 @@ function handleChange(e) {
 	return (
 		<div>
 			<Nav />
-			<div className='pl-20 pr-20'>
+			<div className='px-20 bg-g2l-pale-yellow'>
 				<p className='pl-0 p-10'>
 					<Link href='/'>&lt; Back to homepage</Link>
 				</p>
@@ -66,15 +67,106 @@ function handleChange(e) {
 					</div>
 				</div>
 				<form
-					className='bg-blue-200 py-10 px-10'
+					className='p-10'
 					onSubmit={handleSubmit}
 					method='post'
 					action='POST'>
-					<div className='visible'>
-						<h3 className='mb-12 font-bold text-xl'>
-							Device donation form
+					<div className='visible flex flex-col gap-4'>
+						<h3 className='mb-12 font-bold text-md'>
+							Donate a Device
 						</h3>
-						{/* <p>1 of 3 steps</p> */}
+
+						<div className='grid'>
+							<label className='font-bold text-md' htmlFor='deviceType'>
+								Choose a device you'd like to donate
+							</label>
+							<div className='flex gap-8'>
+								<select
+									onChange={(e) => handleChange(e)}
+									value={data.deviceType}
+									className='mr-7'
+									name='deviceType'
+									id='deviceType'
+									required>
+									<option value='' selected></option>
+									<option>Desktop</option>
+									<option>Tablet</option>
+									<option>Laptop</option>
+								</select>
+							</div>
+						</div>
+
+						<label className='font-bold text-md' htmlFor='isPC'>
+							Please provide the device's information
+						</label>
+						{/* <p>3 of 3 steps</p> */}
+						<div className='device-information-section'>
+							<label className='mr-2' htmlFor='Device info'>
+								PC or MAC
+							</label>
+							<select
+								onChange={(e) => handleChange(e)}
+								value={data.isPC}
+								className='mr-7'
+								name='isPC'
+								id='isPC'
+								required>
+								<option value='' selected></option>
+								<option value='True'>PC</option>
+								<option value='False'>Mac</option>
+							</select>
+							<label className='mr-2' htmlFor='brand'>
+								Brand
+							</label>
+							<select
+								required
+								onChange={(e) => handleChange(e)}
+								value={data.brand}
+								className='mr-7'
+								name='brand'
+								id='brand'
+								required>
+								<option value='' selected></option>
+								<option>Dell</option>
+								<option>Samsung</option>
+								<option>Apple</option>
+								<option>Asus</option>
+								<option>Lenovo</option>
+							</select>
+							<label className='mr-2' htmlFor='modelType'>
+								Model Type
+							</label>
+							<select
+								onChange={(e) => handleChange(e)}
+								value={data.modelType}
+								className='mr-7'
+								name='modelType'
+								id='modelType'
+								required>
+								<option selected value=''></option>
+								<option>Dell latitude 3000</option>
+								<option>Dell latitude 5000</option>
+								<option>Dell latitude 7000</option>
+								<option>Dell xps 13</option>
+								<option>Dell xps 17</option>
+								<option>Dell xps 14</option>
+							</select>
+							<label
+								className='mr-2'
+								htmlFor='quantityToDonate'
+								placeholder='Quantity'>
+								Quantity
+							</label>
+							<input
+								onChange={(e) => handleChange(e)}
+								value={data.quantityToDonate}
+								type='text'
+								placeholder='1'
+								id='quantityToDonate'
+								required
+							/>
+						</div>
+
 						<label
 							className='font-bold'
 							htmlFor='personal information'>
@@ -201,27 +293,6 @@ function handleChange(e) {
 							/>
 						</div>
 
-						<div className='grid mt-10'>
-							<label className='font-bold' htmlFor='deviceType'>
-								Device info
-							</label>
-							<p>what type of devices will you be donating?</p>
-							<div className='flex gap-8'>
-								<select
-									onChange={(e) => handleChange(e)}
-									value={data.deviceType}
-									className='mr-7'
-									name='deviceType'
-									id='deviceType'
-									required>
-									<option value='' selected></option>
-									<option>Desktop</option>
-									<option>Tablet</option>
-									<option>Laptop</option>
-								</select>
-							</div>
-						</div>
-
 						{/* <button
 						title='button'
 						type='submit'
@@ -257,76 +328,6 @@ function handleChange(e) {
 					</button> */}
 					</div>
 					<div className='grid mt-10 visible'>
-						<label className='font-bold' htmlFor='isPC'>
-							PC or MAC
-						</label>
-						{/* <p>3 of 3 steps</p> */}
-						<div className='gap-8'>
-							<label className='mr-2' htmlFor='Device info'>
-								PC or MAC
-							</label>
-							<select
-								onChange={(e) => handleChange(e)}
-								value={data.isPC}
-								className='mr-7'
-								name='isPC'
-								id='isPC'
-								required>
-								<option value='' selected></option>
-								<option value='True'>PC</option>
-								<option value='False'>Mac</option>
-							</select>
-							<label className='mr-2' htmlFor='brand'>
-								Brand
-							</label>
-							<select
-								required
-								onChange={(e) => handleChange(e)}
-								value={data.brand}
-								className='mr-7'
-								name='brand'
-								id='brand'
-								required>
-								<option value='' selected></option>
-								<option>Dell</option>
-								<option>Samsung</option>
-								<option>Apple</option>
-								<option>Asus</option>
-								<option>Lenovo</option>
-							</select>
-							<label className='mr-2' htmlFor='modelType'>
-								Model Type
-							</label>
-							<select
-								onChange={(e) => handleChange(e)}
-								value={data.modelType}
-								className='mr-7'
-								name='modelType'
-								id='modelType'
-								required>
-								<option selected value=''></option>
-								<option>Dell latitude 3000</option>
-								<option>Dell latitude 5000</option>
-								<option>Dell latitude 7000</option>
-								<option>Dell xps 13</option>
-								<option>Dell xps 17</option>
-								<option>Dell xps 14</option>
-							</select>
-							<label
-								className='mr-2'
-								htmlFor='quantityToDonate'
-								placeholder='Quantity'>
-								Quantity
-							</label>
-							<input
-								onChange={(e) => handleChange(e)}
-								value={data.quantityToDonate}
-								type='text'
-								placeholder='1'
-								id='quantityToDonate'
-								required
-							/>
-						</div>
 						<div className='flex gap-8'>
 							{/* <button
 							title='button'
